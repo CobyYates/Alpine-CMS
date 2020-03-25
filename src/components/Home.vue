@@ -16,6 +16,7 @@
       <v-col cols="7" class="mx-3">
         <p>Clients</p>
         <v-data-table
+          items-per-page="25"
           dense
           :headers="headers"
           :items="clients"
