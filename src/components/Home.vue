@@ -1,20 +1,20 @@
 <template>
   <v-container fluid class="fluid">
-    <v-row>
+    <v-row class="text-center">
       <!-- <v-col cols="1" class="mx-3">
         <p>Projects</p>
         <v-row v-for="project in projects" :key="project.i">
           <v-btn width="150" class="my-1">{{ project.name }}</v-btn>
         </v-row>
       </v-col> -->
-      <v-col cols="1" class="mx-3">
-        <p>Staff</p>
+      <v-col cols="1" class="px-3">
+        <p class="display-1">Staff</p>
         <v-row v-for="staff in staffs" :key="staff.i">
-          <v-btn width="150" class="my-1">{{ staff.name }}</v-btn>
+          <v-btn color="success" width="100%" class="my-1">{{ staff.name }}</v-btn>
         </v-row>
       </v-col>
-      <v-col cols="7" class="mx-3">
-        <p>Clients</p>
+      <v-col cols="7" class="px-3">
+        <p class="display-1">Clients</p>
         <v-data-table
           items-per-page="25"
           dense
@@ -24,8 +24,16 @@
           class="elevation-1"
         ></v-data-table>
       </v-col>
-      <v-col cols="3" class="mx-3">
-        <p>Tasks</p>
+      <v-col cols="4" class="px-3">
+        <p class="display-1">Tasks</p>
+        <v-data-table
+          items-per-page="25"
+          dense
+          :headers="headers"
+          :items="clients"
+          item-key="name"
+          class="elevation-1"
+        ></v-data-table>
       </v-col>
     </v-row>
   </v-container>
@@ -36,25 +44,6 @@ export default {
   name: "HelloWorld",
 
   data: () => ({
-    // projects: [
-    //   { name: "Project 1" },
-    //   { name: "Project 2" },
-    //   { name: "Project 3" },
-    //   { name: "Project 4" },
-    //   { name: "Project 5" },
-    //   { name: "Project 6" },
-    //   { name: "Project 7" },
-    //   { name: "Project 8" },
-    //   { name: "Project 9" },
-    //   { name: "Project 10" },
-    //   { name: "Project 11" },
-    //   { name: "Project 12" },
-    //   { name: "Project 13" },
-    //   { name: "Project 14" },
-    //   { name: "Project 15" },
-    //   { name: "Project 16" },
-    //   { name: "Project 17" }
-    // ],
     staffs: [
       { name: "Shawn" },
       { name: "Jane" },
