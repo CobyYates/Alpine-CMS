@@ -24,6 +24,7 @@
           :items="clients"
           item-key="name"
           :search="search"
+          @click:row="open"
           class="elevation-1"
         >
           <template v-slot:top>

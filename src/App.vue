@@ -1,13 +1,13 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app clipped>
+    <v-navigation-drawer v-model="drawer" app clipped mini-variant expand-on-hover color="light-blue darken-4">
       <v-list dense>
         <v-list-item v-for="item in items" :key="item.text" link>
           <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
+            <v-icon color="white">{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
-            <v-list-item-title>
+            <v-list-item-title class="white--text">
               {{ item.text }}
             </v-list-item-title>
           </v-list-item-content>
