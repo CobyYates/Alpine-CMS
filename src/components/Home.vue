@@ -9,6 +9,7 @@
       </v-col> -->
       <v-col cols="1" class="px-3">
         <p class="display-1">Staff</p>
+        <v-btn to="/client">test</v-btn>
         <v-row v-for="staff in staffs" :key="staff.i">
           <v-btn color="success" width="100%" class="my-1">{{
             staff.name
@@ -18,23 +19,31 @@
       <v-col cols="7" class="px-3">
         <p class="display-1">Clients</p>
         <v-data-table
-          items-per-page="25"
           dense
           :headers="headers"
           :items="clients"
           item-key="name"
+          :search="search"
           class="elevation-1"
-        ></v-data-table>
+        >
+          <template v-slot:top>
+            <v-text-field
+              v-model="search"
+              label="Search"
+              class="mx-4"
+            ></v-text-field>
+          </template>
+        </v-data-table>
       </v-col>
       <v-col cols="4" class="px-3">
         <p class="display-1">Tasks</p>
         <v-data-table
-          items-per-page="25"
           dense
           :headers="headers"
           :items="clients"
           item-key="name"
           class="elevation-1"
+          @click:row="open"
         ></v-data-table>
       </v-col>
     </v-row>
@@ -43,9 +52,13 @@
 
 <script>
 export default {
-  name: "HelloWorld",
-
+  methods: {
+    open: function (){
+      this.$router.push('/client')
+    }
+  },
   data: () => ({
+    search: '',
     staffs: [
       { name: "Shawn" },
       { name: "Jane" },

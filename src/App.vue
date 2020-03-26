@@ -76,14 +76,13 @@
 
     <v-content>
       <v-container class="fill-height mx-0" fluid>
-        <Home />
+        <router-view></router-view>
       </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Home from "./components/Home";
 
 export default {
   props: {
@@ -117,8 +116,5 @@ export default {
     //   { picture: 78, text: 'MKBHD' },
     // ],
   }),
-  components: {
-    Home
-  },
 };
 </script>
