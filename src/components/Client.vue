@@ -92,22 +92,36 @@
     </v-col>
     <!--  -->
     <v-col cols="4" class="px-3">
-      <p class="display-1">Tasks</p>
+      <div class="d-flex justify-space-between">
+        <p class="display-1">Tasks</p>
+      <center><v-btn color="primary" @click="addRow">Add New Task</v-btn></center>
+      </div>
+      
       <v-data-table
         dense
         :headers="headers"
         :items="clients"
         item-key="name"
         class="elevation-1"
-        @click:row="addRow"
       >
-        <template v-slot:body.prepend="{ headers }">
-          <tr @click="addRow">
-            <td :colspan="headers.length">
-              Add new row
-            </td>
-          </tr>
-        </template>
+      <template v-slot:item.task="props">
+        <v-edit-dialog
+          :return-value.sync="props.item.task"
+          @save="save"
+          @cancel="cancel"
+          @open="open"
+          @close="close"
+        > {{ props.item.task }}
+          <template v-slot:input>
+            <v-text-field
+              v-model="props.item.task"
+              label="Edit"
+              single-line
+              counter
+            ></v-text-field>
+          </template>
+        </v-edit-dialog>
+      </template>
       </v-data-table>
     </v-col>
   </v-row>
@@ -131,12 +145,12 @@ export default {
     right: false,
     tabs: ["Contact Information", "Bill to Contact"],
     newRow: {
-        task: null,
-        contactName: null,
-        phone: null,
-        nextContact: null,
-        caseManager: null,
-        caseExpert: null
+        task: "task",
+        assignedTo: "assigned",
+        date: "date",
+        estHrs: "est hrs",
+        caseManager: "case manager",
+        caseExpert: "case expert"
       },
     tabForm: [
       [
@@ -292,72 +306,73 @@ export default {
         sortable: false,
         value: "task"
       },
-      { text: "Assigned To", value: "contactName" },
-      { text: "Phone", value: "phone" },
-      { text: "Next Contact", value: "nextContact" },
+      { text: "Assigned To", value: "assignedTo" },
+      { text: "Date", value: "date" },
+      { text: "Est Hours", value: "estHrs" },
       { text: "Case Manager", value: "caseManager" },
       { text: "Case Expert", value: "caseExpert" }
     ],
     clients: [
       {
-        task: "Tagtune",
-        contactName: "Wylie",
-        phone: "959-950-8772",
-        nextContact: "Bennie",
+        task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        assignedTo: "Wylie",
+        date: "5/12/2020",
+        estHrs: 10,
         caseManager: "Franzen",
         caseExpert: "Martino"
       },
       {
-        task: "Wikizz",
-        contactName: "Lilllie",
-        phone: "135-373-4114",
-        nextContact: "Clywd",
+        task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        assignedTo: "Lilllie",
+        date: "5/12/2020",
+        estHrs: 6,
         caseManager: "Kristo",
         caseExpert: "Pierre"
       },
       {
-        task: "Edgeblab",
-        contactName: "Levin",
-        phone: "804-861-8459",
-        nextContact: "Lonny",
+        task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        assignedTo: "Levin",
+        date: "5/12/2020",
+        estHrs: 12,
         caseManager: "Mordecai",
         caseExpert: "Lyle"
       },
       {
-        task: "Flipbug",
-        contactName: "Aldous",
-        phone: "296-403-8485",
-        nextContact: "Flossie",
+        task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        assignedTo: "Aldous",
+        date: "5/12/2020",
+        estHrs: 2,
         caseManager: "Inness",
         caseExpert: "Tann"
       },
       {
-        task: "Tanoodle",
-        contactName: "Son",
-        phone: "314-940-8370",
-        nextContact: "Romona",
+        task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        assignedTo: "Son",
+        date: "5/12/2020",
+        estHrs: 4,
         caseManager: "Torrin",
         caseExpert: "Torr"
       },
       {
-        task: "Oyoloo",
-        contactName: "Harbert",
-        phone: "891-812-7371",
-        nextContact: "Frants",
+        task: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        assignedTo: "Harbert",
+        date: "5/12/2020",
+        estHrs: 3,
         caseManager: "Colan",
         caseExpert: "Dermot"
       },
-      {
-        task: "Tazzy",
-        contactName: "Carol",
-        phone: "602-215-8288",
-        nextContact: "Nissie",
-        caseManager: "Ettore",
-        caseExpert: "Albie"
-      }
     ]
   })
 };
 </script>
 
-<style></style>
+<style>
+  .addRow {
+    background-color: #2196F3;
+    color: white;
+  }
+  .addRow:hover {
+    background-color: white;
+    color: #2196F3;
+  }
+</style>

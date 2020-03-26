@@ -81,9 +81,9 @@
 export default {
   methods: {
     openNewTab: function() {
-      // this.$router.push('/client', '_blank')
-      let route = this.$router.resolve({ path: "/client" });
-      window.open(route.href, "_blank");
+      this.$router.push('/client', '_blank')
+      // let route = this.$router.resolve({ path: "/client" });
+      // window.open(route.href, "_blank");
     }
   },
   data: () => ({
