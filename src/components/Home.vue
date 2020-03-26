@@ -7,11 +7,10 @@
           <v-btn width="150" class="my-1">{{ project.name }}</v-btn>
         </v-row>
       </v-col> -->
-      <v-col cols="1" class="px-3">
+      <v-col cols="1" class="px-1">
         <p class="display-1">Staff</p>
-        <v-btn to="/client">test</v-btn>
         <v-row v-for="staff in staffs" :key="staff.i">
-          <v-btn color="success" width="100%" class="my-1">{{
+          <v-btn small color="success" width="100%" class="my-1">{{
             staff.name
           }}</v-btn>
         </v-row>
@@ -24,9 +23,35 @@
           :items="clients"
           item-key="name"
           :search="search"
-          @click:row="open"
+          @click:row="openNewTab"
           class="elevation-1"
         >
+          <!-- <template v-slot:item.caseName="props">
+            <v-edit-dialog
+              :return-value.sync="props.item.caseName"
+              large
+              persistent
+              @save="save"
+              @cancel="cancel"
+              @open="open"
+              @close="close"
+            >
+              <div>{{ props.item.caseName }}</div>
+              <template v-slot:input>
+                <div class="mt-4 title">Update caseName</div>
+              </template>
+              <template v-slot:input>
+                <v-text-field
+                  v-model="props.item.caseName"
+                  :rules="[max25chars]"
+                  label="Edit"
+                  single-line
+                  counter
+                  autofocus
+                ></v-text-field>
+              </template>
+            </v-edit-dialog>
+          </template> -->
           <template v-slot:top>
             <v-text-field
               v-model="search"
@@ -44,8 +69,9 @@
           :items="clients"
           item-key="name"
           class="elevation-1"
-          @click:row="open"
-        ></v-data-table>
+          @click:row="openNewTab"
+        >
+        </v-data-table>
       </v-col>
     </v-row>
   </v-container>
@@ -54,26 +80,34 @@
 <script>
 export default {
   methods: {
-    open: function (){
+    openNewTab: function() {
       // this.$router.push('/client', '_blank')
-      let route = this.$router.resolve({path: '/client'})
-      window.open(route.href, '_blank')
+      let route = this.$router.resolve({ path: "/client" });
+      window.open(route.href, "_blank");
     }
   },
   data: () => ({
-    search: '',
+    search: "",
+    singleSelect: false,
+    selected: [],
     staffs: [
-      { name: "Shawn" },
-      { name: "Jane" },
-      { name: "Ronald" },
-      { name: "Joe" },
-      { name: "Dylan" },
-      { name: "Joshua" },
-      { name: "Ralph" },
-      { name: "Cory" },
-      { name: "Jordan" },
-      { name: "Jack" },
-      { name: "Carl" }
+      { name: "Cory Kennedy" },
+      { name: "Cristian Gomez" },
+      { name: "James Wood" },
+      { name: "Jeff Decker" },
+      { name: "Jeff Pickett" },
+      { name: "Laura McNichols" },
+      { name: "Matt Germane" },
+      { name: "Melanie Quintana" },
+      { name: "Rick Hoffman" },
+      { name: "Roger Smith" },
+      { name: "Scott Kimber" },
+      { name: "Shawn Yates" },
+      { name: "Tia (Projects)" },
+      { name: "Tyson Mietus" },
+      { name: "Wayne Klein" },
+      { name: "Will Boesen" },
+      { name: "Zach Baldwin" }
     ],
     clients: [
       {
@@ -413,3 +447,9 @@ export default {
   })
 };
 </script>
+
+<style>
+td {
+  cursor: pointer;
+}
+</style>
