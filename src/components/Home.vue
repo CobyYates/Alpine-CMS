@@ -55,7 +55,9 @@
 export default {
   methods: {
     open: function (){
-      this.$router.push('/client')
+      // this.$router.push('/client', '_blank')
+      let route = this.$router.resolve({path: '/client'})
+      window.open(route.href, '_blank')
     }
   },
   data: () => ({
